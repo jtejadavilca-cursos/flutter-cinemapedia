@@ -21,7 +21,7 @@ class TheMovieDBDatasourceImpl extends MovieDatasource {
   Future<List<MovieEntity>> getNowPlaying({int page = 1}) async {
     final response = await dio.get(
       '/movie/now_playing',
-      queryParameters: Map.from({page: page}),
+      queryParameters: Map.from({'page': page}),
     );
     TheMovieDBResponse tmdbResp = TheMovieDBResponse.fromJson(response.data);
 
