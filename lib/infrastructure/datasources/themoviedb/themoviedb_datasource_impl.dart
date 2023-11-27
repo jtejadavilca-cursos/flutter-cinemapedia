@@ -19,11 +19,14 @@ class TheMovieDBDatasourceImpl extends MovieDatasource {
   );
   @override
   Future<List<MovieEntity>> getNowPlaying({int page = 1}) async {
-    final response = await dio.get('/movie/now_playing');
+    final response = await dio.get(
+      '/movie/now_playing',
+      queryParameters: Map.from({page: page}),
+    );
     TheMovieDBResponse tmdbResp = TheMovieDBResponse.fromJson(response.data);
 
     final List<MovieEntity> movies = tmdbResp.results
-        .where((thdb) => !thdb.posterPath.startsWith('/'))
+        .where((thdb) => thdb.posterPath.startsWith('/'))
         .map(TheMovieDBMovieMapper.movieDBToEntity)
         .toList();
 
