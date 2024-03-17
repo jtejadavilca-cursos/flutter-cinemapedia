@@ -5,8 +5,8 @@ class TheMovieDBMovieMapper {
   static MovieEntity movieDBToEntity(TheMovieDBMovie tmdbMovie) => MovieEntity(
         adult: tmdbMovie.adult,
         backdropPath: tmdbMovie.backdropPath != ''
-            ? 'https://image.tmdb.org/t/p/w500${tmdbMovie.backdropPath}'
-            : '',
+          ? 'https://image.tmdb.org/t/p/w500${tmdbMovie.backdropPath}'
+          : 'https://ih1.redbubble.net/image.1893341687.8294/fposter,small,wall_texture,product,750x1000.jpg',
         genreIds: tmdbMovie.genreIds.map((e) => e.toString()).toList(),
         id: tmdbMovie.id,
         originalLanguage: tmdbMovie.originalLanguage,
@@ -14,8 +14,8 @@ class TheMovieDBMovieMapper {
         overview: tmdbMovie.overview,
         popularity: tmdbMovie.popularity,
         posterPath: tmdbMovie.posterPath != ''
-            ? 'https://image.tmdb.org/t/p/w500${tmdbMovie.posterPath}'
-            : '',
+          ? 'https://image.tmdb.org/t/p/w500${tmdbMovie.backdropPath}'
+          : 'no-poster',
         releaseDate: tmdbMovie.releaseDate,
         title: tmdbMovie.title,
         video: tmdbMovie.video,

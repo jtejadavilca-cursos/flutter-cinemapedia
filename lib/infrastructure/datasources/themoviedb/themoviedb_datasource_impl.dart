@@ -12,24 +12,60 @@ class TheMovieDBDatasourceImpl extends MovieDatasource {
     BaseOptions(
       baseUrl: 'https://api.themoviedb.org/3',
       queryParameters: {
-        'api_key': Environment.THE_MOVIEDB_KEY,
+        'api_key': Environment.theMovieDbApiKey,
         'language': 'es-MX',
       },
     ),
   );
+
+  List<MovieEntity> _jsonToMovies(Map<String, dynamic> json) {
+    final movieDBResponse = TheMovieDBResponse.fromJson(json);
+
+    final List<MovieEntity> movies = movieDBResponse.results
+        .where((thdb) => thdb.posterPath.startsWith('/'))
+        .map((tmdb) => TheMovieDBMovieMapper.movieDBToEntity(tmdb))
+        .toList();
+
+    return movies;
+  }
+
   @override
   Future<List<MovieEntity>> getNowPlaying({int page = 1}) async {
     final response = await dio.get(
       '/movie/now_playing',
       queryParameters: Map.from({'page': page}),
     );
-    TheMovieDBResponse tmdbResp = TheMovieDBResponse.fromJson(response.data);
 
-    final List<MovieEntity> movies = tmdbResp.results
-        .where((thdb) => thdb.posterPath.startsWith('/'))
-        .map(TheMovieDBMovieMapper.movieDBToEntity)
-        .toList();
+    return _jsonToMovies(response.data);
+  }
 
-    return movies;
+  @override
+  Future<List<MovieEntity>> getPopular({int page = 1}) async {
+    final response = await dio.get(
+      '/movie/popular',
+      queryParameters: Map.from({'page': page}),
+    );
+
+    return _jsonToMovies(response.data);
+  }
+
+  @override
+  Future<List<MovieEntity>> getTopRated({int page = 1}) async {
+    final response = await dio.get(
+      '/movie/top_rated',
+      queryParameters: Map.from({'page': page}),
+    );
+
+    return _jsonToMovies(response.data);
+  }
+
+  @override
+  Future<List<MovieEntity>> getUpcoming({int page = 1}) async {
+    final response = await dio.get(
+      '/movie/upcoming',
+      queryParameters: Map.from({'page': page}),
+    );
+
+    return _jsonToMovies(response.data);
   }
 }

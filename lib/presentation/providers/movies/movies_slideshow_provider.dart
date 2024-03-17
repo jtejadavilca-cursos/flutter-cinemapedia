@@ -9,5 +9,5 @@ final moviesSlideshowProvider = Provider<List<MovieEntity>>((ref) {
 
   int length = nowPlayinMovies.length;
 
-  return nowPlayinMovies.sublist(1, length >= 6 ? 6 : length);
+  return nowPlayinMovies.sublist(0, length >= 6 ? 6 : length);
 });
