@@ -1,11 +1,10 @@
-import 'package:cinemapedia/config/constants/environment.dart';
 import 'package:dio/dio.dart';
-
+import 'package:cinemapedia/config/constants/environment.dart';
 import 'package:cinemapedia/domain/datasources/movie_datasource.dart';
 import 'package:cinemapedia/domain/entities/movie_entity.dart';
 
+import 'package:cinemapedia/infrastructure/datasources/themoviedb/models/models.dart';
 import 'package:cinemapedia/infrastructure/datasources/themoviedb/mappers/themoviedb_movie_mapper.dart';
-import 'package:cinemapedia/infrastructure/datasources/themoviedb/models/themoviedb_response.dart';
 
 class TheMovieDBDatasourceImpl extends MovieDatasource {
   final dio = Dio(
@@ -27,6 +26,14 @@ class TheMovieDBDatasourceImpl extends MovieDatasource {
         .toList();
 
     return movies;
+  }
+
+  MovieEntity _jsonToMovie(Map<String, dynamic> json) {
+    final tmdbDet = TheMovieDbDetails.fromJson(json);
+
+    final MovieEntity movie = TheMovieDBMovieMapper.movieDBDetToEntity(tmdbDet);
+
+    return movie;
   }
 
   @override
@@ -67,5 +74,12 @@ class TheMovieDBDatasourceImpl extends MovieDatasource {
     );
 
     return _jsonToMovies(response.data);
+  }
+
+  @override
+  Future<MovieEntity> getMovieById({String movieId = '0'}) async {
+    final response = await dio.get('/movie/$movieId');
+
+    return _jsonToMovie(response.data);
   }
 }

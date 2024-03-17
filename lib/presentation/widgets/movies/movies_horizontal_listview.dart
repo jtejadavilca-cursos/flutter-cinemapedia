@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie_entity.dart';
 import 'package:cinemapedia/presentation/widgets/shared/image_card.dart';
@@ -21,7 +22,8 @@ class MoviesHorizontalListviewWidget extends StatefulWidget {
       _MoviesHorizontalListviewState();
 }
 
-class _MoviesHorizontalListviewState extends State<MoviesHorizontalListviewWidget> {
+class _MoviesHorizontalListviewState
+    extends State<MoviesHorizontalListviewWidget> {
   final scrollController = ScrollController();
 
   @override
@@ -58,9 +60,11 @@ class _MoviesHorizontalListviewState extends State<MoviesHorizontalListviewWidge
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemCount: widget.movies.length,
-              itemBuilder: (context, index) => _Slide(
-                movie: widget.movies[index],
-              ),
+              itemBuilder: (context, index) {
+                return FadeInRight(
+                  child: _Slide(movie: widget.movies[index]),
+                );
+              },
             )),
           ],
         ));
@@ -118,7 +122,10 @@ class _Slide extends StatelessWidget {
             height: 200,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: ImageCard(imagePath: movie.posterPath),
+              child: ImageCard(
+                movieId: '${movie.id}',
+                imagePath: movie.posterPath,
+              ),
             ),
           ),
 

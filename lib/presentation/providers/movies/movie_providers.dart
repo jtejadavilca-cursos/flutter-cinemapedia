@@ -31,6 +31,7 @@ final topRatedMoviesProvider =
   return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
 });
 
+
 typedef MovieCallback = Future<List<MovieEntity>> Function({int page});
 
 class MoviesNotifier extends StateNotifier<List<MovieEntity>> {

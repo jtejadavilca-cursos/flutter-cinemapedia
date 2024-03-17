@@ -46,7 +46,7 @@ class _Slide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
-      child: ImageCard(imagePath: movie.backdropPath),
+      child: ImageCard(movieId: '${movie.id}', imagePath: movie.backdropPath),
     );
   }
 }

@@ -1,10 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ImageCard extends StatelessWidget {
+  final String movieId;
   final String imagePath;
   const ImageCard({
     super.key,
+    required this.movieId,
     required this.imagePath,
   });
 
@@ -35,9 +38,12 @@ class ImageCard extends StatelessWidget {
               );
             }
 
-            return FadeIn(
-              duration: const Duration(seconds: 1),
-              child: child,
+            return GestureDetector(
+              onTap: () => context.push('/movie/$movieId'),
+              child: FadeIn(
+                duration: const Duration(seconds: 1),
+                child: child,
+              ),
             );
           },
         ),
