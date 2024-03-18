@@ -2,7 +2,7 @@ import 'package:cinemapedia/domain/entities/movie_entity.dart';
 import 'package:cinemapedia/infrastructure/datasources/themoviedb/models/themoviedb_details.dart';
 import 'package:cinemapedia/infrastructure/datasources/themoviedb/models/themoviedb_movie.dart';
 
-class TheMovieDBMovieMapper {
+abstract class TheMovieDBMovieMapper {
   static MovieEntity movieDBToEntity(TheMovieDBMovie tmdbMovie) => MovieEntity(
         adult: tmdbMovie.adult,
         backdropPath: tmdbMovie.backdropPath != ''

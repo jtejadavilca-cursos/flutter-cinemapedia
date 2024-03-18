@@ -24,8 +24,6 @@ class MovieMapNotifier extends StateNotifier<Map<String, MovieEntity>> {
 
     if (state[movieId] != null) return;
 
-    print('Realizando la petición HTTP de movieId=$movieId');
-
     isLoading = true;
     final MovieEntity movie = await getMovie(movieId: movieId);
 
