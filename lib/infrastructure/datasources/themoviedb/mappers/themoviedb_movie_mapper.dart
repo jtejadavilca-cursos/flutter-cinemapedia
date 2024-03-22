@@ -14,10 +14,13 @@ abstract class TheMovieDBMovieMapper {
         originalTitle: tmdbMovie.originalTitle,
         overview: tmdbMovie.overview,
         popularity: tmdbMovie.popularity,
-        posterPath: tmdbMovie.posterPath != ''
-            ? 'https://image.tmdb.org/t/p/w500${tmdbMovie.backdropPath}'
-            : 'no-poster',
-        releaseDate: tmdbMovie.releaseDate,
+        posterPath: tmdbMovie.posterPath != null &&
+                tmdbMovie.posterPath.toString().isNotEmpty
+            ? 'https://image.tmdb.org/t/p/w500${tmdbMovie.posterPath}'
+            : 'https://www.prokerala.com/movies/assets/img/no-poster-available.jpg',
+        releaseDate: tmdbMovie.releaseDate != null
+            ? tmdbMovie.releaseDate!
+            : DateTime.now(),
         title: tmdbMovie.title,
         video: tmdbMovie.video,
         voteAverage: tmdbMovie.voteAverage,
@@ -37,7 +40,7 @@ abstract class TheMovieDBMovieMapper {
         overview: tmdbDetails.overview,
         popularity: tmdbDetails.popularity,
         posterPath: tmdbDetails.posterPath != ''
-            ? 'https://image.tmdb.org/t/p/w500${tmdbDetails.backdropPath}'
+            ? 'https://image.tmdb.org/t/p/w500${tmdbDetails.posterPath}'
             : 'https://ih1.redbubble.net/image.1893341687.8294/fposter,small,wall_texture,product,750x1000.jpg',
         releaseDate: tmdbDetails.releaseDate,
         title: tmdbDetails.title,

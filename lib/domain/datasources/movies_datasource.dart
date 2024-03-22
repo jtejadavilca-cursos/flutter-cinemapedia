@@ -1,13 +1,15 @@
 import 'package:cinemapedia/domain/entities/movie_entity.dart';
 
 abstract class MoviesDatasource {
-  Future<List<MovieEntity>> getNowPlaying({int page});
+  Future<List<MovieEntity>> getNowPlaying({int page = 1});
 
-  Future<List<MovieEntity>> getPopular({int page});
+  Future<List<MovieEntity>> getPopular({int page = 1});
 
-  Future<List<MovieEntity>> getUpcoming({int page});
+  Future<List<MovieEntity>> getUpcoming({int page = 1});
 
-  Future<List<MovieEntity>> getTopRated({int page});
+  Future<List<MovieEntity>> getTopRated({int page = 1});
 
   Future<MovieEntity> getMovieById({String movieId});
+
+  Future<List<MovieEntity>> searchMovies(String query);
 }

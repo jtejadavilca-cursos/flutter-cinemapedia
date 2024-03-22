@@ -21,7 +21,8 @@ class TheMovieDBDatasourceImpl extends MoviesDatasource {
     final movieDBResponse = TheMovieDBResponse.fromJson(json);
 
     final List<MovieEntity> movies = movieDBResponse.results
-        .where((thdb) => thdb.posterPath.startsWith('/'))
+        .where((thdb) =>
+            thdb.posterPath != null && thdb.posterPath.toString().isNotEmpty)
         .map((tmdb) => TheMovieDBMovieMapper.movieDBToEntity(tmdb))
         .toList();
 
@@ -40,7 +41,7 @@ class TheMovieDBDatasourceImpl extends MoviesDatasource {
   Future<List<MovieEntity>> getNowPlaying({int page = 1}) async {
     final response = await dio.get(
       '/movie/now_playing',
-      queryParameters: Map.from({'page': page}),
+      queryParameters: {'page': page},
     );
 
     return _jsonToMovies(response.data);
@@ -50,7 +51,7 @@ class TheMovieDBDatasourceImpl extends MoviesDatasource {
   Future<List<MovieEntity>> getPopular({int page = 1}) async {
     final response = await dio.get(
       '/movie/popular',
-      queryParameters: Map.from({'page': page}),
+      queryParameters: {'page': page},
     );
 
     return _jsonToMovies(response.data);
@@ -60,7 +61,7 @@ class TheMovieDBDatasourceImpl extends MoviesDatasource {
   Future<List<MovieEntity>> getTopRated({int page = 1}) async {
     final response = await dio.get(
       '/movie/top_rated',
-      queryParameters: Map.from({'page': page}),
+      queryParameters: {'page': page},
     );
 
     return _jsonToMovies(response.data);
@@ -70,7 +71,7 @@ class TheMovieDBDatasourceImpl extends MoviesDatasource {
   Future<List<MovieEntity>> getUpcoming({int page = 1}) async {
     final response = await dio.get(
       '/movie/upcoming',
-      queryParameters: Map.from({'page': page}),
+      queryParameters: {'page': page},
     );
 
     return _jsonToMovies(response.data);
@@ -81,5 +82,15 @@ class TheMovieDBDatasourceImpl extends MoviesDatasource {
     final response = await dio.get('/movie/$movieId');
 
     return _jsonToMovie(response.data);
+  }
+
+  @override
+  Future<List<MovieEntity>> searchMovies(String query) async {
+    final response = await dio.get(
+      '/search/movie',
+      queryParameters: {'query': query},
+    );
+
+    return _jsonToMovies(response.data);
   }
 }
