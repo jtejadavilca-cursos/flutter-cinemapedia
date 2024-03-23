@@ -39,7 +39,7 @@ class ImageCard extends StatelessWidget {
             }
 
             return GestureDetector(
-              onTap: () => context.push('/movie/$movieId'),
+              onTap: () => context.push('/home/0/movie/$movieId'),
               child: FadeIn(
                 duration: const Duration(seconds: 1),
                 child: child,
