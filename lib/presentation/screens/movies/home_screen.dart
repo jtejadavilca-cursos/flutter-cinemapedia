@@ -1,11 +1,10 @@
-import 'package:cinemapedia/presentation/providers/movies/initial_loading_provider.dart';
-import 'package:cinemapedia/presentation/widgets/movies/movies_horizontal_listview.dart';
-import 'package:cinemapedia/presentation/widgets/shared/full_screen_loader.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:cinemapedia/presentation/providers/providers.dart';
+import 'package:cinemapedia/presentation/widgets/movies/movies_horizontal_listview.dart';
+import 'package:cinemapedia/presentation/widgets/shared/full_screen_loader.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,9 +22,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _HomeView extends ConsumerStatefulWidget {
-  const _HomeView({
-    super.key,
-  });
+  const _HomeView();
 
   @override
   _HomeViewState createState() => _HomeViewState();
