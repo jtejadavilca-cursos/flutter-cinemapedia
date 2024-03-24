@@ -1,6 +1,7 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:cinemapedia/domain/entities/movie_entity.dart';
 import 'package:cinemapedia/presentation/providers/movies/movie_repository_provider.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final nowPlayingMoviesProvider =
     StateNotifierProvider<MoviesNotifier, List<MovieEntity>>(
@@ -30,7 +31,6 @@ final topRatedMoviesProvider =
 
   return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
 });
-
 
 typedef MovieCallback = Future<List<MovieEntity>> Function({int page});
 

@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+
 import 'package:cinemapedia/domain/entities/movie_entity.dart';
 import 'package:cinemapedia/presentation/widgets/movies/movie_poster_link.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class MoviesMasonry extends StatefulWidget {

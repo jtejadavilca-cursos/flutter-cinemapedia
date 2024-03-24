@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie_entity.dart';
 import 'package:cinemapedia/presentation/widgets/shared/image_card.dart';
-import 'package:flutter/material.dart';
 
 class MoviesHorizontalListviewWidget extends StatefulWidget {
   final List<MovieEntity> movies;

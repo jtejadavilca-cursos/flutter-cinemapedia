@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
+
 import 'package:cinemapedia/domain/entities/movie_entity.dart';
 import 'package:cinemapedia/presentation/widgets/shared/image_card.dart';
-import 'package:flutter/material.dart';
 
 class MoviesSlideshowWidget extends StatelessWidget {
   final double height;
